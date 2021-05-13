@@ -14,7 +14,7 @@ export default function Home({ userGraph = [], setUserGraph, mockData }) {
       </Head>
 
       <main className={styles.main}>
-        <div>BLAH</div>
+        <div>EDIT</div>
       </main>
     </div>
   )

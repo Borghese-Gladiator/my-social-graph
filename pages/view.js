@@ -12,7 +12,7 @@ export default function Home({ userGraph = [], setUserGraph }) {
       </Head>
 
       <main className={styles.main}>
-        <div>BLAH</div>
+        <div>VIEW</div>
       </main>
     </div>
   )
