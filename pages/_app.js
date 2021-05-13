@@ -1,14 +1,19 @@
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import '../styles/globals.css'
+// layouts
 import DefaultLayout from '../components/_layouts/DefaultLayout';
 
-function MyApp({ Component, pageProps }) {
-  const [userList, setUserList] = useState([]);
+// Create Graph to hold data
+import { Graph, Node } from '../utils/graph';
+import { generateRandomNetwork } from '../utils/helpers';
 
-  const getLayout = Component.getLayout || (page => <DefaultLayout children={page} userList={userList} setUserList={setUserList} />)
+function MyApp({ Component, pageProps }) {
+  const [userGraph, setUserGraph] = useState(new Graph())
+
+  const getLayout = Component.getLayout || (page => <DefaultLayout children={page} />)
 
   return getLayout(
-    <Component {...pageProps} userList={userList} setUserList={setUserList} />
+    <Component {...pageProps} userGraph={userGraph} setUserGraph={setUserGraph} />
   )
 }
 
