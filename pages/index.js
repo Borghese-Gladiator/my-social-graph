@@ -1,22 +1,21 @@
 import Head from 'next/head'
 import { useState, useEffect } from 'react';
 import styles from '../styles/Home.module.css'
-
-// Create Graph to hold data
-import { Graph, Node } from '../utils/graph';
+// utils
+import mockData from '../utils/mock_data';
 import { generateRandomNetwork } from '../utils/helpers';
 
-export default function Home({ userGraph=[], setUserGraph }) {
-  const [graph, setGraph] = useState(new Graph())
-  useEffect(() => {
-    fetch('/api/hello')
-      .then(res => res.json())
-      .then(res => {
-        console.log(res)
-        const mockData = generateRandomNetwork(res, graph, 150);
-        setGraph(mockData)
-      })
-  })
+export async function getStaticProps() {
+  return {
+    props: {
+      mockData: mockData
+    }
+  }
+}
+
+export default function Home({ userGraph=[], setUserGraph, mockData }) {
+  console.log(mockData)
+  
   return (
     <div className={styles.container}>
       <Head>
