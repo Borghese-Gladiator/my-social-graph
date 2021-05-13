@@ -6,8 +6,7 @@ import styles from '../styles/Home.module.css'
 import { Graph, Node } from '../utils/graph';
 import { generateRandomNetwork } from '../utils/helpers';
 
-export default function Home({ userGraph=[], setUserGraph }) {
-  const [graph, setGraph] = useState(new Graph())
+export default function UserPage({ userGraph=[], setUserGraph }) {
   useEffect(() => {
     fetch('/api/hello')
       .then(res => res.json())
@@ -20,8 +19,8 @@ export default function Home({ userGraph=[], setUserGraph }) {
   return (
     <div className={styles.container}>
       <Head>
-        <title>Social Graph - Home</title>
-        <meta name="description" content="Social network graph to display contact groups. Use default data through the home page." />
+        <title>Social Graph - View</title>
+        <meta name="description" content="Social network graph to display contact groups. View network graph here." />
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
