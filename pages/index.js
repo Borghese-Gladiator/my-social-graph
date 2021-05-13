@@ -1,9 +1,11 @@
+import React from 'react'
+// Next.js
 import Head from 'next/head'
-import { useState, useEffect } from 'react';
 import styles from '../styles/Home.module.css'
 // utils
 import mockData from '../utils/mock_data';
-import { generateRandomNetwork } from '../utils/helpers';
+// custom components
+import ForceGraph from '../components/ForceGraph';
 
 export async function getStaticProps() {
   return {
@@ -13,9 +15,14 @@ export async function getStaticProps() {
   }
 }
 
-export default function Home({ userGraph=[], setUserGraph, mockData }) {
-  console.log(mockData)
-  
+export default function Home({ userGraph = {}, setUserGraph, mockData }) {
+  const data = mockData
+
+  const nodeHoverTooltip = React.useCallback((node) => {
+    console.log(node)
+    return `<div>${node.name}</div>`;
+  }, []);
+
   return (
     <div className={styles.container}>
       <Head>
@@ -26,6 +33,7 @@ export default function Home({ userGraph=[], setUserGraph, mockData }) {
 
       <main className={styles.main}>
         <div>HOME</div>
+        <ForceGraph linksData={data.links} nodesData={data.nodes} nodeHoverTooltip={nodeHoverTooltip} />
       </main>
     </div>
   )
